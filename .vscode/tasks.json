@@ -28,7 +28,6 @@
             },
             "detail": "Compiles with g++, runs the output."
         },
-
         {
             "type": "shell",
             "label": "C/C++: gcc.exe Compile and Run",
@@ -53,7 +52,7 @@
                 "showReuseMessage": false
             },
             "detail": "Compiles with gcc, runs the output."
-        }
+        },
     ],
     "version": "2.0.0"
 }
