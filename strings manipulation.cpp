@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cctype>  // strings manipulation lib
 #include <cstring> // C-strings manipulation lib
+#include <string>
 
 /*
 https://www.youtube.com/watch?v=8jLOx1hD3_o&t=665s
-timestamp: 13:41:52
+timestamp: 14:01:24
 
 */
 
@@ -111,6 +112,51 @@ int main()
   }
 
   std::cout << "================================" << std::endl;
+
+  char dest_str[10]{"Hello "};
+  char src_str[10]{"World!"};
+  size_t char_count{2};
+
+  std::cout << "Strings: " << dest_str << "& " << src_str << " Concat into: " << std::strcat(dest_str, src_str) << std::endl;
+
+  // concat method which also takes no of chars to do from src to dest...
+  std::cout << "Strings: " << dest_str << " -- Concat into: " << std::strncat(dest_str, src_str, char_count) << std::endl;
+
+  char *dest1 = new char[30]{'L', 'o', 'r', 'd', '\0'};
+  char *src1 = new char[30]{' ', 'o', 'f', ' ', 't', 'h', 'e', ' ', 'r', 'i', 'n', 'g', '\0'};
+
+  // 1. Move strncpy here so it uses the original, fresh buffers
+  std::strncpy(dest1, src1, 5);
+  dest1[5] = '\0'; // 2. CRITICAL: Manually add null-terminator to prevent garbage output
+  std::cout << "std::strncpy(dest1): [" << dest1 << "]" << std::endl;
+
+  std::strcpy(dest1, "Lord"); // reseting the value to perform below tasks..
+  std::cout << "std::strcat(dest1):  " << std::strcat(dest1, src1) << std::endl;
+  std::cout << "std::strcpy(dest1):  " << std::strcpy(dest1, src1) << std::endl;
+
+  delete[] dest1;
+  dest1 = nullptr;
+  delete[] src1;
+  src1 = nullptr;
+  std::cout << "================================" << std::endl;
+
+  // using std::string lib to do same things
+  std::string ini_message_str{"I am sunny."};
+  std::string ini_fullname_str{};
+  std::string ini_weried_str(5, 'e');
+  std::string ini_rep_message_str{"Hello there.", 5};
+  std::string ini_split_message_str{ini_message_str, 5, 6};
+  std::string ini_holder_message_str{ini_message_str};
+
+  std::cout << "String: " << ini_message_str << std::endl;                     // prints string.
+  std::cout << "Initilizing string: " << ini_fullname_str << std::endl;        // prints nothing, cuz' empty..
+  std::cout << "Repeat string: " << ini_weried_str << std::endl;               // prints reapter..
+  std::cout << "String from 5th: " << ini_rep_message_str << std::endl;        // prints first 5 chars.
+  std::cout << "Spliting from 6th: " << ini_split_message_str << std::endl;    // prints after the 5th and goes to till 6th.
+  std::cout << "Strings placeholder: " << ini_holder_message_str << std::endl; // placeholder for string from another
+
+  std::cout << "================================" << std::endl;
+
   std::cout << "Program worked successfully!" << std::endl;
   return 0;
 }
